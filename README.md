@@ -13,7 +13,7 @@ function req(uint _x) public {
   }}
 
 ```
-#Revert:
+# Revert:
 Can be used to flag an error and revert the current call. You can also provide a message containing details about the error, and the message will be passed back to the caller.	Since the function execution stops after the revert() statement, the remaining gas is also returned back to the user. If you don't use the revert() statement and some error occurs, then the entire gas is lost. Using revert() does not return the consumed gas, however. The gas that is consumed is consumed, and it cannot be returned.
 ```javascript
 pragma solidity 0.8.18;
@@ -24,7 +24,7 @@ pragma solidity 0.8.18;
       eth+=4;
   }
 ```
-#Assert:-
+# Assert:-
 The assert function, like require, is a convenience function that checks for conditions. If a condition fails, then the function execution is terminated with an error message. assert() takes only one parameter as input. You pass a condition to assert(), and if the condition is true, then the function execution continues and the execution jumps to the next statement in the function.
 ```javascript
 function CheckcurrentOwnership() public {

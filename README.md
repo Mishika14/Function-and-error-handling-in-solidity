@@ -1,39 +1,31 @@
-# Function-and-error-handling-in-solidity
-Hello Folks, This is a simple program in Solidity to demonstrate error handling in contracts. We have demonstrated here the basic 3 keywords which are used to throw the error and perform certain actions and changes to the contract whenever an error occurs. These are:-
-# Require:
-   The require statement is used to check a condition and throw an exception if the condition is not me. 	The first parameter is the condition that you want to validate and the second parameter is the message that will be passed back to the caller if the condition fails. If the condition is satisfied, then the execution of the function continues and the execution jumps to the next statement. Here's the example for the required function.
-	
-
-
+# Welcome
+To handle errors in solidity we use the following functions:-
+# Require
+It is commonly used to validate user inputs or check conditions that must be met for a function to execute correctly. It is generally used for inputs provided by users or external contracts, where you want to ensure certain conditions are met before proceeding with the function. Takes two parameters the second one is completely optional.
+____________________________________________
+SYNTAX: Require(condition,"error message");
+Example: You have a TotalSupply of Tokens and You want to mint the tokens , So the number of minted tokens can only be positive, not negative to implement this we can write like this:
 ```javascript
-pragma solidity 0.8.18;
-function req(uint _x) public {
-      eth+=_x;
-      require(_x>2,"Does not have minimum eth required");
-  }}
-
+require(newValue >= 0, "Value cannot be negative");
 ```
-# Revert:
-Can be used to flag an error and revert the current call. You can also provide a message containing details about the error, and the message will be passed back to the caller.	Since the function execution stops after the revert() statement, the remaining gas is also returned back to the user. If you don't use the revert() statement and some error occurs, then the entire gas is lost. Using revert() does not return the consumed gas, however. The gas that is consumed is consumed, and it cannot be returned.
+# Assert
+It is used to find the internal errors in the code. Usually used when we want a certain condition to be true for every case. If the condition is found to be false then it reverts back making all state variables unchanged.
+______________________________________
+SYNTAX: Assert(Condition);
+example: you want to check that only the owner of the account can access the following function.
 ```javascript
-pragma solidity 0.8.18;
- function checkOwnership() public   {
-      if(owner==msg.sender){
-          revert("you are not the correct owner");
-      }
-      eth+=4;
-  }
+assert(onwer==msg.sender);
 ```
-# Assert:-
-The assert function, like require, is a convenience function that checks for conditions. If a condition fails, then the function execution is terminated with an error message. assert() takes only one parameter as input. You pass a condition to assert(), and if the condition is true, then the function execution continues and the execution jumps to the next statement in the function.
+# Revert
+It is used externally when we want to check certain conditions. If the conditions are met false then it reverts back to its initial state and refunds all the gas that is unused.
+_____________________________________________________
+Syntax: if(Condition){
+Revert("error message");
+}
+Example:-
+if you want to deduct the amount from the balance so it is necessary that the amount should be less then the balance limit.we can implement this as:
 ```javascript
-function CheckcurrentOwnership() public {
-      assert(eth<34);
-      eth+=2;
-  }
+if(amount>balance){
+revert("Insufficient balance for transaction");
 ```
-
-
-
-
 
